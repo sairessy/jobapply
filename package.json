@@ -1,0 +1,15 @@
+{
+  "name": "jobapply",
+  "version": "1.0.0",
+  "description": "An application to allow the amployers receive employes docs efficiently!",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "keywords": [],
+  "author": "Victorino, Sairesse <sairessy@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jobapply - apply</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    header {
+      height: 40px;
+      padding: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      box-shadow: 0 2px 2px #eee;
+    }
+
+    nav a {
+      display: inline-block;
+      width: 80px;
+      margin-right: 5px;
+      color: blue;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      text-decoration: none;
+      padding: 5px 5px;
+      background: #EEE;
+      text-align: center;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    #header-right {
+      display: flex;
+      align-items: center;
+    }
+
+    #title {
+      font-size: 28px;
+      text-decoration: none;
+      color: #000;
+    }
+
+    #join {
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      padding: 2px;
+      width: 100px;
+      text-align: center;
+      text-decoration: none;
+      color: #000;
+      display: none;
+    }
+
+    #join:hover {
+      background-color: #f2f2f2;
+    }
+
+    header form {
+      width: unset;
+    }
+
+    main {
+      height: calc(100vh - 40px);
+    }
+
+    form {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    span {
+      color: #555;
+      font-size: 12px;
+      margin-top: 5px;
+      margin-left: 5px;
+      font-family: Arial, Helvetica, sans-serif;
+      display: block;
+    }
+
+    h2 {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    textarea,
+    input,
+    button {
+      margin: 5px auto;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      outline: none;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: blue;
+    }
+
+    button {
+      background-color: blue;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      box-shadow: 0 0 2px 2px #ddd;
+    }
+
+    button:active {
+      opacity: 0.8;
+    }
+
+    header form input {
+      padding: 7px 7px 7px 35px;
+      width: 500px;
+      background: url(assets/img/search-solid.png) no-repeat 10px center/20px;
+    }
+
+    main {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    section {
+      flex: 1;
+      overflow-y: scroll;
+    }
+
+    section form {
+      margin: auto;
+    }
+
+    #gender {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+      font-size: 12px;
+    }
+
+    section img {
+      width: 200px;
+      height: 200px;
+      display: none;
+    }
+
+    aside {
+      display: flex;
+      flex: 0.5;
+      padding: 5px;
+      justify-content: center;
+    }
+
+    aside#left {
+      border-right: 1px solid #eee;
+    }
+
+    aside#right {
+      border-left: 1px solid #eee;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      overflow-y: scroll;
+    }
+
+    footer {
+      height: 50px;
+      border-top: 1px solid #EEE;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f8f8f8;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+    }
+
+    @media screen and (max-width: 414px) {
+      header form {
+        width: 100px;
+        display: none;
+      }
+
+      section {
+        padding: 10px;
+      }
+
+      main {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="/" id="title">jobapply</a>
+    <form>
+      <input type="text" placeholder="Pesquisar no jobapply">
+    </form>
+    <div id="header-right">
+      <nav>
+        <a href="/" target="_blank">Home</a>
+        <a href="#">Contacto</a>
+      </nav>
+      <a href="" id="join">Join</a>
+    </div>
+  </header>
+
+  <main>
+    <aside id="left">
+    </aside>
+    <section>
+      <form id="form-employe">
+        <h2 id="job-title"></h2>
+        <input type="text" placeholder="Nome" id="employe-name" required>
+        <input type="text" placeholder="Apelido" id="employe-surname" required>
+        <input type="text" placeholder="Email" id="employe-email" required>
+        <input type="number" placeholder="Idade" id="employe-age" min="18" max="70" required>
+        <div id="gender">
+          <input type="radio" name="gender" id="male" checked>
+          <label for="male">Masculino</label>
+          <input type="radio" name="gender" id="female">
+          <label for="female">Feminino</label>
+        </div>
+        <input type="text" placeholder="Formação (opcional)" id="degree">
+        <input type="tel" placeholder="Telefone" id="employe-tel" required>
+        <textarea id="description" cols="30" rows="10" placeholder="Fale um pouco de si..."></textarea>
+        <span>Curriculum Vitae</span>
+        <input type="file" placeholder="Currículum Vitae" id="employe-file">
+        <button>Candidatar-se</button>
+      </form>
+    </section>
+
+    <aside id="right">
+    </aside>
+  </main>
+
+  <footer>
+    jobapply &copy 2021
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.2.10-20212222149/firebase.min.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyBYf0mESOtTbR8EKHdBDGb8ozgQmwYCOSw",
+      authDomain: "jobapply-b4481.firebaseapp.com",
+      projectId: "jobapply-b4481",
+      storageBucket: "jobapply-b4481.appspot.com",
+      messagingSenderId: "603955868071",
+      appId: "1:603955868071:web:96462bd67add64dd118682"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    var database = firebase.database();
+
+    // Listen for gender change
+    let gender = 'M';
+    document.getElementById('male').addEventListener('change', (evt) => {
+      gender = 'M';
+    });
+
+    document.getElementById('female').addEventListener('change', (evt) => {
+      gender = 'F';
+    });
+
+    (async function init() {
+      const url = window.location.pathname;
+      const auxArr = url.split('/');
+      const id = auxArr[auxArr.length - 1];
+      getJobInfo(id);
+
+      const formEmploye = document.getElementById('form-employe');
+      formEmploye.addEventListener('submit', evt => {
+        evt.preventDefault();
+        const name = document.getElementById('employe-name').value;
+        const surname = document.getElementById('employe-surname').value;
+        const age = document.getElementById('employe-age').value;
+        const description = document.getElementById('description').value;
+        const email = document.getElementById('employe-email').value;
+        const tel = document.getElementById('employe-tel').value;
+        const degree = document.getElementById('degree').value;
+        const job = id;
+        // const file = document.getElementById('employe-file');
+        const data = { name, surname, email, age, gender, degree, description, tel, job };
+        saveEmploye(data);
+      });
+    })();
+
+    // Get job information on DB to display on web page
+    async function getJobInfo(id) {
+      database.ref('jobs').once('value', (data, err) => {
+        const jobs = data.val();
+        const keys = Object.keys(jobs);
+        for (let i = 0; i < keys.length; i++) {
+          const k = keys[i];
+          if (k === id) {
+            document.getElementById('job-title').innerText = jobs[k].title;
+            break;
+          }
+        }
+      });
+    }
+
+    // Save employe to DB
+    async function saveEmploye(data) {
+      database.ref('employes').push(data);
+      alert(`Parabens ${data.name}, sua candidatura foi submetida com sucesso 🙂!`);
+    }
+  </script>
+</body>
+
+</html>
