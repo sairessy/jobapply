@@ -261,6 +261,11 @@
       align-items: center;
     }
 
+    #filters>div {
+      display: flex;
+      align-items: center;
+    }
+
     #section-header {
       border-bottom: 1px solid #eee;
       /* background-color: #F8F8F8; */
@@ -304,7 +309,7 @@
     <div id="header-right">
       <nav>
         <a href="/">Home</a>
-        <a href="#">Contacto</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sairessy@gmail.com">Contacto</a>
       </nav>
       <a href="" id="join">Join</a>
     </div>
@@ -313,7 +318,7 @@
   <main>
     <aside id="left">
       <form id="form-employ">
-        <!-- <h2>Sou empregador</h2> -->
+        <h2>Sou empregador</h2>
         <input type="text" placeholder="Titulo da vaga" id="vaga-title" required>
         <span>Data de validade</span>
         <input type="date" id="vaga-date" required>
@@ -376,7 +381,8 @@
       evt.preventDefault();
       const title = document.getElementById('vaga-title').value;
       const expire = document.getElementById('vaga-date').value;
-      const data = { title, expire };
+      const date = new Date().getTime();
+      const data = { title, date, expire };
       saveToFireBase(data);
     });
 
@@ -389,6 +395,13 @@
 
       document.getElementById('employe-link').value = link;
       document.getElementById('key').value = id;
+
+      const table = {
+        link: document.getElementById('employe-link').value,
+        key: document.getElementById('key').value
+      }
+
+      downloadCSV(data.title, table);
     }
 
     const link = document.getElementById('link');
@@ -407,13 +420,16 @@
           const k = keys[i];
           const employe = employes[k];
           if (employe.job === job) {
-            const { name, surname, age } = employe;
+            const { name, surname, age, gender, description } = employe;
             eps += `
             <div class="employe">
                 <div class="photo"></div>
                 <div>
-                  <div id="name">${name} ${surname}</div>
-                  <div id="age">Idade: ${age}</div>
+                  <div>${name} ${surname}</div>
+                  <div>Idade: ${age} 
+                    </div>
+                  <div>Sexo: ${gender} </div>
+                  <div> Descrição: ${description} </div>
                   <div>Documentos</div>
                   <div class="docs"><a href="" target="_blank">Curriculum vitae</a></div>
                   </div>
@@ -424,9 +440,25 @@
 
         document.getElementById('employes').innerHTML = eps;
       });
+    }
 
+    document.getElementById('btn-filter').addEventListener('click', () => {
+      alert('Em desenvolvimento 🥱😊!');
+    });
 
+    // Download CSV
+    function downloadCSV(name, data) {
+      console.log(data)
+      let csvStr = `sep=,
+        Link de candidatura, Chave
+        ${data.link}, ${data.key}
+      `;
 
+      var hiddenElement = document.createElement('a');
+      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvStr);
+      hiddenElement.target = '_blank';
+      hiddenElement.download = name + '.csv';
+      hiddenElement.click();
     }
   </script>
 </body>
